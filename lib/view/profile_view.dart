@@ -19,7 +19,7 @@ class _ProfileViewState extends State<ProfileView> {
               child: Container(
                 color: Color.fromRGBO(255, 110, 161, 1.0), //#FF6EA1
                 width: double.infinity,
-                height: MediaQuery.of(context).size.height / 16,
+                height: MediaQuery.of(context).size.height / 16 + 20,
               ),
             ),
           ),
