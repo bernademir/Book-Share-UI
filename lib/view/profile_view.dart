@@ -1,5 +1,7 @@
-import 'package:bookshareui/widget/clipper_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../image_manager.dart';
+import '../widget/clipper_widget.dart';
 
 class ProfileView extends StatefulWidget {
   @override
@@ -7,6 +9,14 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
+  late final ImageManager imageManager;
+
+  @override
+  void initState() {
+    imageManager = ImageManager();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +49,7 @@ class _ProfileViewState extends State<ProfileView> {
             height: 120,
             width: 120,
             child: CircleAvatar(
-              backgroundImage: NetworkImage(""),
+              backgroundImage: NetworkImage(imageManager.randomImage),
             ),
           )
         ],

@@ -1,6 +1,7 @@
-import 'package:bookshareui/widget/bottom_navbar_widget.dart';
-import 'package:bookshareui/widget/clipper_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../widget/bottom_navbar_widget.dart';
+import '../widget/clipper_widget.dart';
 
 class WelcomeView extends StatefulWidget {
   @override
@@ -41,63 +42,83 @@ class _WelcomeViewState extends State<WelcomeView> {
         children: [
           Stack(
             children: [
-              ClipPath(
-                clipper: MyCustomClipper1(),
-                child: Container(
-                  color: Color.fromRGBO(255, 110, 161, 1.0), //#FF6EA1
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height / 4 + 20,
-                ),
-              ),
-              ClipPath(
-                clipper: MyCustomClipper2(),
-                child: Container(
-                  color: Colors.white24,
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height / 4,
-                ),
-              ),
-              Positioned(
-                left: 20.0,
-                top: MediaQuery.of(context).size.height / 8,
-                child: Text(
-                  welcomeString,
-                  style: TextStyle(color: Colors.white, fontSize: 22),
-                ),
-              ),
+              _clipPath1(context, MediaQuery.of(context).size.height / 4 + 20),
+              _clipPath2(context, MediaQuery.of(context).size.height / 4),
+              _welcomeText(context),
             ],
           ),
           Expanded(
             child: SizedBox(
               child: Container(
                 padding: EdgeInsets.all(15.0),
-                child: GridView.count(
-                  crossAxisCount: 3,
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    for (int i = 0; i < 9; i++) gridCard(i),
-                  ],
-                ),
+                child: _gridView(),
               ),
             ),
           ),
-          InkWell(
-            onTap: () {},
-            child: Text(
-              "More Topics",
-              style: TextStyle(
-                  color: Color.fromRGBO(255, 110, 161, 1.0),
-                  decoration: TextDecoration.underline,
-                  fontSize: 15),
-            ),
-          ),
-          applyButton(),
+          _gridInkWell(),
+          _applyButton(),
         ],
       ),
     );
   }
 
-  Widget gridCard(int i) {
+  Positioned _welcomeText(BuildContext context) {
+    return Positioned(
+      left: 20.0,
+      top: MediaQuery.of(context).size.height / 8,
+      child: Text(
+        welcomeString,
+        style: TextStyle(color: Colors.white, fontSize: 22),
+      ),
+    );
+  }
+
+  _gridInkWell() {
+    return InkWell(
+      onTap: () {},
+      child: Text(
+        "More Topics",
+        style: TextStyle(
+            color: Color.fromRGBO(255, 110, 161, 1.0),
+            decoration: TextDecoration.underline,
+            fontSize: 15),
+      ),
+    );
+  }
+
+  _gridView() {
+    return GridView.count(
+      crossAxisCount: 3,
+      scrollDirection: Axis.vertical,
+      children: [
+        for (int i = 0; i < 9; i++) _gridCard(i),
+      ],
+    );
+  }
+
+  _clipPath2(BuildContext context, double height) {
+    return ClipPath(
+      clipper: MyCustomClipper2(),
+      child: Container(
+        color: Colors.white24,
+        width: double.infinity,
+        height: height,
+      ),
+    );
+  }
+
+  _clipPath1(BuildContext context, double height) {
+    return ClipPath(
+      clipper: MyCustomClipper1(),
+      child: Container(
+        color: Color.fromRGBO(255, 110, 161, 1.0), //#FF6EA1
+        width: double.infinity,
+        height: height,
+      ),
+    );
+  }
+
+  _gridCard(int i) {
     return Column(
       children: [
         InkWell(
@@ -125,7 +146,7 @@ class _WelcomeViewState extends State<WelcomeView> {
     );
   }
 
-  Widget applyButton() {
+  _applyButton() {
     return TextButton(
       onPressed: () {
         Navigator.push(
