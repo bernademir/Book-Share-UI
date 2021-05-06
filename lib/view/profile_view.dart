@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../image_manager.dart';
+import '../model/image_manager.dart';
 import '../widget/clipper_widget.dart';
 
 class ProfileView extends StatefulWidget {

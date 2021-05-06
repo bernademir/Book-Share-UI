@@ -1,3 +1,4 @@
+import 'package:bookshareui/model/category_model.dart';
 import 'package:flutter/material.dart';
 
 import '../widget/bottom_navbar_widget.dart';
@@ -9,29 +10,7 @@ class WelcomeView extends StatefulWidget {
 }
 
 class _WelcomeViewState extends State<WelcomeView> {
-  List titles = [
-    'Culture',
-    'Design',
-    'Food',
-    'History',
-    'Law',
-    'Medical',
-    'Politics',
-    'Science',
-    'Sport'
-  ];
-
-  List images = [
-    'assets/topics/culture.jpg',
-    'assets/topics/design.jpg',
-    'assets/topics/food.jpg',
-    'assets/topics/history.jpg',
-    'assets/topics/law.jpg',
-    'assets/topics/medical.jpg',
-    'assets/topics/politics.jpg',
-    'assets/topics/science.jpg',
-    'assets/topics/sport.jpg'
-  ];
+  Category category = Category();
 
   String welcomeString = "Welcome\nChoose the topics";
 
@@ -47,17 +26,21 @@ class _WelcomeViewState extends State<WelcomeView> {
               _welcomeText(context),
             ],
           ),
-          Expanded(
-            child: SizedBox(
-              child: Container(
-                padding: EdgeInsets.all(15.0),
-                child: _gridView(),
-              ),
-            ),
-          ),
+          _gridViewExpanded(),
           _gridInkWell(),
           _applyButton(),
         ],
+      ),
+    );
+  }
+
+  _gridViewExpanded() {
+    return Expanded(
+      child: SizedBox(
+        child: Container(
+          padding: EdgeInsets.all(15.0),
+          child: _gridView(),
+        ),
       ),
     );
   }
@@ -128,7 +111,7 @@ class _WelcomeViewState extends State<WelcomeView> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                  image: AssetImage(images[i]),
+                  image: AssetImage(category.images[i]),
                   fit: BoxFit.cover,
                   alignment: Alignment.center),
             ),
@@ -140,7 +123,7 @@ class _WelcomeViewState extends State<WelcomeView> {
         ),
         Align(
           alignment: Alignment.bottomCenter,
-          child: Text(titles[i]),
+          child: Text(category.titles[i]),
         ),
       ],
     );
