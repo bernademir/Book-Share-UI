@@ -1,4 +1,4 @@
-import 'package:bookshareui/view/library_view.dart';
+import 'package:bookshareui/view/store_view.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -9,8 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      home: //WelcomeView(),
-          LibraryView(),
+      home: StoreView(),
     );
   }
 }
