@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import '../model/category_model.dart';
 import '../model/image_manager.dart';
+import '../model/list_model.dart';
 import '../widget/clipper_widget.dart';
 import '../widget/float_app_bar.dart';
 
@@ -14,7 +14,7 @@ class DiscoverView extends StatefulWidget {
 class _DiscoverViewState extends State<DiscoverView> {
   late final ImageManager imageManager;
 
-  Category _category = Category();
+  Lists _category = Lists();
 
   @override
   void initState() {
@@ -24,12 +24,7 @@ class _DiscoverViewState extends State<DiscoverView> {
 
   @override
   Widget build(BuildContext context) {
-    List texts = [
-      "Our Top Picks",
-      "Trending Books",
-      "Best Share",
-      "Recently Viewed"
-    ];
+    Lists text = Lists();
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -41,17 +36,17 @@ class _DiscoverViewState extends State<DiscoverView> {
               children: [
                 _clipPath1(context),
                 _clipPath2(context),
-                _stackTitle(context, texts[0]),
+                _stackTitle(context, text.discoverTitles[0]),
                 _listCardPositioned(context),
               ],
             ),
             _rowCategoryScroll(),
             SizedBox(height: 20.0),
-            _headlines(texts, context, 1),
+            _headlines(text.discoverTitles, context, 1),
             _trendBooksGrid(context),
-            _headlines(texts, context, 2),
+            _headlines(text.discoverTitles, context, 2),
             _bestShareRowScroll(),
-            _headlines(texts, context, 3),
+            _headlines(text.discoverTitles, context, 3),
             _bestShareRowScroll(),
           ],
         ),
@@ -120,13 +115,13 @@ class _DiscoverViewState extends State<DiscoverView> {
     );
   }
 
-  _headlines(List<dynamic> texts, BuildContext context, int i) {
+  _headlines(List<dynamic> discoverTitles, BuildContext context, int i) {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
         margin: EdgeInsets.all(10.0),
         child: Text(
-          texts[i],
+          discoverTitles[i],
           style: Theme.of(context)
               .textTheme
               .headline5!
@@ -157,7 +152,7 @@ class _DiscoverViewState extends State<DiscoverView> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                  image: AssetImage(_category.images[i]),
+                  image: AssetImage(_category.welcomeViewImages[i]),
                   fit: BoxFit.cover,
                   alignment: Alignment.center),
             ),
@@ -169,7 +164,7 @@ class _DiscoverViewState extends State<DiscoverView> {
         ),
         Align(
           alignment: Alignment.bottomCenter,
-          child: Text(_category.titles[i]),
+          child: Text(_category.welcomeViewTitles[i]),
         ),
       ],
     );

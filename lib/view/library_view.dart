@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../model/image_manager.dart';
+import '../model/list_model.dart';
 import '../widget/float_app_bar.dart';
 
 class LibraryView extends StatefulWidget {
@@ -11,7 +12,7 @@ class LibraryView extends StatefulWidget {
 class _LibraryViewState extends State<LibraryView> {
   late final ImageManager imageManager;
 
-  List headlines = ["General", "New", "Most Viewed"];
+  Lists obj = Lists();
 
   @override
   void initState() {
@@ -86,7 +87,7 @@ class _LibraryViewState extends State<LibraryView> {
 
   _clickableText(int j, BuildContext context, bool pressedd) {
     return Text(
-      headlines[j],
+      obj.libraryHeadlines[j],
       style: Theme.of(context).textTheme.headline5!.copyWith(
           color:
               pressedd ? Color.fromRGBO(255, 110, 161, 1.0) : Colors.black26),

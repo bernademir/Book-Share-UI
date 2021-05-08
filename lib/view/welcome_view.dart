@@ -1,6 +1,6 @@
-import 'package:bookshareui/model/category_model.dart';
 import 'package:flutter/material.dart';
 
+import '../model/list_model.dart';
 import '../widget/bottom_navbar_widget.dart';
 import '../widget/clipper_widget.dart';
 
@@ -10,7 +10,7 @@ class WelcomeView extends StatefulWidget {
 }
 
 class _WelcomeViewState extends State<WelcomeView> {
-  Category category = Category();
+  Lists category = Lists();
 
   String welcomeString = "Welcome\nChoose the topics";
 
@@ -45,7 +45,7 @@ class _WelcomeViewState extends State<WelcomeView> {
     );
   }
 
-  Positioned _welcomeText(BuildContext context) {
+  _welcomeText(BuildContext context) {
     return Positioned(
       left: 20.0,
       top: MediaQuery.of(context).size.height / 8,
@@ -111,7 +111,7 @@ class _WelcomeViewState extends State<WelcomeView> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                  image: AssetImage(category.images[i]),
+                  image: AssetImage(category.welcomeViewImages[i]),
                   fit: BoxFit.cover,
                   alignment: Alignment.center),
             ),
@@ -123,7 +123,7 @@ class _WelcomeViewState extends State<WelcomeView> {
         ),
         Align(
           alignment: Alignment.bottomCenter,
-          child: Text(category.titles[i]),
+          child: Text(category.welcomeViewTitles[i]),
         ),
       ],
     );

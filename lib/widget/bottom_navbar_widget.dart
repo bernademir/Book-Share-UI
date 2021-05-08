@@ -1,9 +1,10 @@
-import 'package:bookshareui/view/discover_view.dart';
-import 'package:bookshareui/view/library_view.dart';
-import 'package:bookshareui/view/profile_view.dart';
-import 'package:bookshareui/view/store_view.dart';
-import 'package:bookshareui/view/wishlist_view.dart';
 import 'package:flutter/material.dart';
+
+import '../view/discover_view.dart';
+import '../view/library_view.dart';
+import '../view/profile_view.dart';
+import '../view/store_view.dart';
+import '../view/wishlist_view.dart';
 
 class MyCustomNavBar extends StatefulWidget {
   @override
